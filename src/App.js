@@ -272,8 +272,6 @@ export default function App() {
     );
   });
 
-  const currentLang = LANGUAGES.find(l => l.value === selectedLang);
-
   return (
     <div style={{
       minHeight: "100vh",
