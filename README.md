@@ -1,70 +1,101 @@
-# Getting Started with Create React App
+![header](https://capsule-render.vercel.app/api?type=waving&color=0:0d1421,50:00d4aa,100:0d1421&height=140&section=header&text=First%20Contribution%20Finder&fontSize=28&fontColor=ffffff&fontAlignY=55&animation=fadeIn)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
 
-## Available Scripts
+*Find real `good-first-issue` tickets from GitHub — filtered by language, live.*
 
-In the project directory, you can run:
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-00d4aa?style=for-the-badge&logo=vercel&logoColor=0d1421)](https://first-contribution-finder.vercel.app)
+[![React](https://img.shields.io/badge/React-0d1421?style=for-the-badge&logo=react&logoColor=61dafb)](https://reactjs.org)
+[![GitHub API](https://img.shields.io/badge/GitHub%20API-0d1421?style=for-the-badge&logo=github&logoColor=white)](https://docs.github.com/en/rest)
 
-### `npm start`
+</div>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## what it does
 
-### `npm test`
+A lot of developers want to contribute to open source but don't know where to start. This app solves that — it pulls real `good-first-issue` labelled tickets directly from GitHub, lets you filter by programming language, and links you straight to the issue so you can get started.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+No login. No setup. Just pick a language and go.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 🔍 **Language filter** — JavaScript, Python, TypeScript, C++, Rust, Go, Java, HTML
+- 🔎 **Search** — filter results by issue title or repo name
+- 🃏 **Issue cards** — shows repo, title, labels, comment count, and time since updated
+- ⚡ **Live data** — fetches directly from the GitHub Search API on every query
+- 💀 **Skeleton loading** — smooth loading states while data is being fetched
+- ⚠️ **Error handling** — graceful messages for API rate limits or network issues
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## preview
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+> Filter by language → browse issues → click to contribute
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![preview](https://capsule-render.vercel.app/api?type=rect&color=0d1421&height=60&text=live%20at%20first-contribution-finder.vercel.app&fontSize=13&fontColor=00d4aa)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## tech stack
 
-## Learn More
+| Layer | Tech |
+|---|---|
+| Framework | React (Create React App) |
+| Data | GitHub Search API (no auth required) |
+| Styling | Inline styles + CSS animations |
+| Fonts | Space Mono · DM Sans (Google Fonts) |
+| Deployment | Vercel |
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## run locally
 
-### Code Splitting
+```bash
+# clone the repo
+git clone https://github.com/ahsunavinod-021/first-contribution-finder.git
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# move into the folder
+cd first-contribution-finder
 
-### Analyzing the Bundle Size
+# install dependencies
+npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# start the dev server
+npm start
+```
 
-### Making a Progressive Web App
+Opens at `http://localhost:3000`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## how it works
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+The app uses the **GitHub Search API** to query open issues labelled `good-first-issue` filtered by the selected programming language:
 
-### Deployment
+```
+GET https://api.github.com/search/issues
+  ?q=label:"good+first+issue"+language:{lang}+state:open
+  &sort=updated&order=desc&per_page=15
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+No API key needed — GitHub allows 60 unauthenticated requests per hour.
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## notes
+
+- GitHub's unauthenticated API allows **60 requests/hour**. If you hit the limit, wait a minute and try again.
+- Results are sorted by **most recently updated** so you always see active issues.
+
+---
+
+## why i built this
+
+Making your first open source contribution is intimidating — finding the right issue is half the battle. I built this to make that step easier, and as a project to sharpen my React and API integration skills.
+
+---
+
+![footer](https://capsule-render.vercel.app/api?type=waving&color=0:0d1421,50:00d4aa,100:0d1421&height=80&section=footer&animation=fadeIn)
